@@ -12,12 +12,21 @@ fn solve_part1(input: &str) -> u32 {
                 .collect();
             let min = nums.iter().min().unwrap();
             nums.iter().map(|area| area * 2).sum::<u32>() + min
-            // let areas: Vec<Vec<u32>> = nums.into_iter().combinations(2).collect();
         })
         .sum()
 }
-fn solve_part2(input: &str) -> i64 {
-    todo!();
+fn solve_part2(input: &str) -> u32 {
+    input
+        .lines()
+        .map(|line| {
+            let nums: Vec<u32> = line.split('x').map(|v| v.parse::<u32>().unwrap()).collect();
+
+            let wrap_around = (nums.iter().sum::<u32>() - nums.iter().max().unwrap()) * 2;
+            let volume = nums.iter().product::<u32>();
+
+            volume + wrap_around
+        })
+        .sum()
 }
 
 fn main() {
