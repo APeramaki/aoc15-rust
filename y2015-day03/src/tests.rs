@@ -11,7 +11,10 @@ fn part1() {
 
 #[test]
 fn part2() {
-    todo!();
-    let example_input = "";
-    assert_eq!(solve_part2(example_input), 0);
+    let example_input = "^v";
+    assert_eq!(solve_part2(example_input), 3);
+    let example_input = "^>v<";
+    assert_eq!(solve_part2(example_input), 3);
+    let example_input = "^v^v^v^v^v";
+    assert_eq!(solve_part2(example_input), 11);
 }
