@@ -229,3 +229,7 @@ version = "0.1.0"
 dependencies = [
  "nalgebra",
 ]
+
+[[package]]
+name = "y2016-day02"
+version = "0.1.0"
