@@ -11,6 +11,6 @@ fn part1() {
 
 #[test]
 fn part2() {
-    let example_input = "";
-    assert_eq!(solve_part2(example_input), 0);
+    let example_input = "R8, R4, R4, R8";
+    assert_eq!(solve_part2(example_input), 4);
 }
