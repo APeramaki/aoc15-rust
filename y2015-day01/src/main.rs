@@ -1,13 +1,12 @@
 fn solve_part1(input: &str) -> i64 {
     input
         .chars()
-        .into_iter()
         .fold(0, |acc, c: char| if c == '(' { acc + 1 } else { acc - 1 })
 }
 
 fn solve_part2(input: &str) -> Option<i64> {
     let mut floor = 0;
-    for (index, char) in input.chars().into_iter().enumerate() {
+    for (index, char) in input.chars().enumerate() {
         match char {
             '(' => floor += 1,
             ')' => floor -= 1,
@@ -37,10 +36,7 @@ fn main() {
     let result = solve_part2(&input);
     println!(
         "Part 2 solution: {}, time taken {:.2?}",
-        match result {
-            Some(x) => x,
-            None => 0,
-        },
+        result.unwrap_or(0),
         now.elapsed()
     );
 }

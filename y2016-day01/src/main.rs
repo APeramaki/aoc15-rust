@@ -14,7 +14,7 @@ fn solve_part1(input: &str) -> i64 {
         } else {
             turn_left * direction
         };
-        location = location + direction * length.parse::<i64>().unwrap();
+        location += direction * length.parse::<i64>().unwrap();
     });
     location.abs().sum()
 }
@@ -35,9 +35,8 @@ fn solve_part2(input: &str) -> i64 {
         };
 
         for _ in 0..length.parse::<i64>().unwrap() {
-            location = location + direction;
+            location += direction;
             if !visited_location.insert((*location.index(0), *location.index(1))) {
-                // I would like to return from function here
                 return location.abs().sum();
             }
         }
