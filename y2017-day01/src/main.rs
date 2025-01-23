@@ -16,7 +16,16 @@ fn solve_part1(input: &str) -> usize {
 }
 
 fn solve_part2(input: &str) -> usize {
-    todo!()
+    let v: Vec<usize> = input.chars()
+        .map(|n| n.to_digit(10).unwrap_or_default() as usize).collect::<Vec<_>>();
+    let half_len = v.len() / 2;
+    let mut total: usize = 0;
+    for i in 0..(half_len) {
+        if v[i] == v[i + half_len] {
+            total += v[i];
+        }
+    }
+    total * 2
 }
 
 fn main() {
