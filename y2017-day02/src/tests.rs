@@ -7,6 +7,6 @@ fn part1() {
 
 #[test]
 fn part2() {
-    let example_input = "";
-    assert_eq!(solve_part2(example_input), 0);
+    let example_input = "5\t9\t2\t8\n9\t4\t7\t3\n3\t8\t6\t5";
+    assert_eq!(solve_part2(example_input), 9);
 }
