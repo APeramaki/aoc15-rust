@@ -1,4 +1,4 @@
-use std::usize;
+use std::rc::Rc;
 
 fn solve_part1(input: &str) -> usize {
     input.lines().fold(0_usize, |acc, line| {
@@ -12,8 +12,33 @@ fn solve_part1(input: &str) -> usize {
     })
 }
 
-fn solve_part2(input: &str) -> usize {
-    todo!()
+fn solve_part2(input: &str) -> u32 {
+    input.lines().fold(0, |acc, line| {
+        let nums = line.split('\t').map(|num| num.parse::<u32>().unwrap());
+
+        acc + lazy_combinations(nums)
+            .find_map(|(a, b)| {
+                if a % b == 0 {
+                    Some(a / b)
+                } else if b % a == 0 {
+                    Some(b / a)
+                } else {
+                    None
+                }
+            })
+            .unwrap()
+    })
+}
+
+// Lazy combinations for better performance
+fn lazy_combinations(iter: impl Iterator<Item = u32>) -> impl Iterator<Item = (u32, u32)> {
+    let items = Rc::new(iter.collect::<Vec<u32>>());
+    let len = items.len();
+
+    (0..len).flat_map(move |i| {
+        let items = Rc::clone(&items);
+        (i + 1..len).map(move |j| (items[i].clone(), items[j].clone()))
+    })
 }
 
 fn main() {
