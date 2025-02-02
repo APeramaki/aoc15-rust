@@ -1,6 +1,18 @@
-
 fn solve_part1(input: &str) -> u32 {
-    todo!()
+    let t: Vec<_> = input
+        .lines()
+        .filter(|line| {
+            let nums: Vec<_> = line
+                .split_whitespace()
+                .map(|v| v.parse::<u32>().unwrap())
+                .collect();
+
+            let max = nums.iter().max().unwrap();
+            let sum_others = nums.iter().sum::<u32>() - max;
+            sum_others > *max
+        })
+        .collect();
+    t.len() as u32
 }
 
 fn solve_part2(input: &str) -> u32 {
