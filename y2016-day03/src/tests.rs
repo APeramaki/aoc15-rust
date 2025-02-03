@@ -7,6 +7,8 @@ fn part1() {
 
 #[test]
 fn part2() {
-    let example_input = "5 10 25\n15 25 12";
-    assert_eq!(solve_part2(example_input), 0);
+    let example_input = r#"5 10 25
+    15 25 12
+    20 28 5"#;
+    assert_eq!(solve_part2(example_input), 1);
 }
