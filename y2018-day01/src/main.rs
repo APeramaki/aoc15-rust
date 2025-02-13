@@ -1,7 +1,9 @@
 
 fn solve_part1(input: &str) -> i32 {
-
-    todo!()
+    input.split('\n')
+        .map(|v| v.parse::<i32>().unwrap_or(0))
+        .sum()
+    
 }
 
 fn solve_part2(input: &str) -> u32 {
