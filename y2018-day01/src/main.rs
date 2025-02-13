@@ -1,13 +1,23 @@
+use std::collections::HashSet;
 
 fn solve_part1(input: &str) -> i32 {
-    input.split('\n')
-        .map(|v| v.parse::<i32>().unwrap_or(0))
-        .sum()
-    
+    input.lines().filter_map(|v| v.parse::<i32>().ok()).sum()
 }
 
-fn solve_part2(input: &str) -> u32 {
-    todo!();
+fn solve_part2(input: &str) -> i32 {
+    let mut found_freqs = HashSet::new();
+    let mut acc = 0;
+    found_freqs.insert(0);
+    let freq_changes = input.lines().filter_map(|v| v.parse::<i32>().ok()).cycle();
+
+    for freq_change in freq_changes {
+        acc += freq_change;
+
+        if !found_freqs.insert(acc) {
+            return acc;
+        }
+    }
+    unreachable!();
 }
 
 fn main() {
