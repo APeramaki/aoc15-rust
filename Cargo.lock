@@ -237,6 +237,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "y2015-day05"
+version = "0.1.0"
+
+[[package]]
 name = "y2016-day01"
 version = "0.1.0"
 dependencies = [
@@ -250,6 +254,9 @@ version = "0.1.0"
 [[package]]
 name = "y2016-day03"
 version = "0.1.0"
+dependencies = [
+ "itertools",
+]
 
 [[package]]
 name = "y2017-day01"
@@ -257,4 +264,12 @@ version = "0.1.0"
 
 [[package]]
 name = "y2017-day02"
+version = "0.1.0"
+
+[[package]]
+name = "y2018-day01"
+version = "0.1.0"
+
+[[package]]
+name = "y2018-day02"
 version = "0.1.0"
