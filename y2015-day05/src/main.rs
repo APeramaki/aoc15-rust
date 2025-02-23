@@ -1,3 +1,6 @@
+use itertools::Itertools;
+use std::collections::hash_map::Entry::{Occupied, Vacant};
+use std::collections::HashMap;
 static VOWELS: &[char] = &['a', 'e', 'i', 'o', 'u'];
 
 fn solve_part1(input: &str) -> u32 {
@@ -30,7 +33,35 @@ fn solve_part1(input: &str) -> u32 {
 }
 
 fn solve_part2(input: &str) -> u32 {
-    todo!()
+    input
+        .lines()
+        .filter_map(|line| {
+            let chars: Vec<char> = line.chars().collect();
+
+            // Break early if no pair with spacing found
+            chars.windows(3).find(|triplet| triplet[0] == triplet[2])?;
+
+            let mut found_pairs: HashMap<(char, char), usize> = HashMap::new();
+            // Find character pairs in the line. Pairs can't overlap. ('aaa')
+            for (index, pair) in chars.windows(2).enumerate() {
+                match found_pairs.entry((pair[0], pair[1])) {
+                    // if pair has been found previously, check if it is 
+                    // far enough from _first_ time it was found
+                    Occupied(entry) => {
+                        if *entry.get() < index - 1 {
+                            return Some(());
+                        }
+                    }
+                    // Only new pairs are added to hashmap
+                    // This ensures continuous "doubles" ('aaaa') can be identified.
+                    Vacant(entry) => {
+                        entry.insert(index);
+                    }
+                }
+            }
+            None
+        })
+        .count() as u32
 }
 
 fn main() {
