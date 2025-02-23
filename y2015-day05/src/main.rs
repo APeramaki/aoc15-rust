@@ -1,4 +1,3 @@
-use itertools::Itertools;
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::collections::HashMap;
 static VOWELS: &[char] = &['a', 'e', 'i', 'o', 'u'];
@@ -45,7 +44,7 @@ fn solve_part2(input: &str) -> u32 {
             // Find character pairs in the line. Pairs can't overlap. ('aaa')
             for (index, pair) in chars.windows(2).enumerate() {
                 match found_pairs.entry((pair[0], pair[1])) {
-                    // if pair has been found previously, check if it is 
+                    // if pair has been found previously, check if it is
                     // far enough from _first_ time it was found
                     Occupied(entry) => {
                         if *entry.get() < index - 1 {
