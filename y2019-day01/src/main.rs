@@ -4,8 +4,21 @@ fn solve_part1(input: &str) -> u32 {
         .fold(0, |acc, line| acc + (line.parse::<u32>().unwrap() / 3) - 2)
 }
 
-fn solve_part2(input: &str) -> u32 {
-    todo!()
+fn solve_part2(input: &str) -> i64 {
+    input
+        .lines()
+        .map(|line| line.parse::<i64>().unwrap())
+        .fold(0, |acc, weight| acc + fuel_per_weight(weight))
+}
+
+fn fuel_per_weight(weight: i64) -> i64 {
+    let fuel = (weight / 3) - 2;
+    // Calculate fuel weight needed to carry fuel itself.
+    // Fuel weights smaller than 9 can be carried by wishing really hard
+    if fuel > 8 {
+        return fuel + fuel_per_weight(fuel);
+    }
+    fuel
 }
 
 fn main() {
