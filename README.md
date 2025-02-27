@@ -9,4 +9,13 @@ cargo test -p day01
 cargo run --bin day01
 # Build single day as release
 cargo build --bin day01 --release
+
+# Run all tests
+cargo test
 ```
+
+# Themed solutions
+
+## Trait
+
+year 2015 day 06

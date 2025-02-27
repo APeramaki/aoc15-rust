@@ -10,5 +10,5 @@ fn part1() {
 #[test]
 fn part2() {
     let example_input = "ckczppom";
-    assert_eq!(solve_part2(example_input), 1048970);
+    assert_eq!(solve_part2(example_input), 3938038);
 }
