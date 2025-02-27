@@ -1,11 +1,11 @@
-use grid::Grid;
+use grid::{DimmableLight, Grid, Light, SimpleLight};
 use regex::Regex;
 
 mod grid;
 
-fn solve_part1(input: &str) -> u32 {
+fn solve_part<T: Clone + Light>(input: &str) -> u32 {
     let re = Regex::new(r"^(toggle|turn on|turn off) (\d+),(\d+) through (\d+),(\d+)$").unwrap();
-    let mut grid = Grid::new();
+    let mut grid: Grid<T> = Grid::new();
     input.lines().for_each(|line| {
         if let Some(caps) = re.captures(line) {
             let action = match caps.get(1).unwrap().as_str() {
@@ -28,16 +28,12 @@ fn solve_part1(input: &str) -> u32 {
     grid.count_on()
 }
 
-fn solve_part2(input: &str) -> u32 {
-    todo!()
-}
-
 fn main() {
     use std::time::Instant;
     let now = Instant::now();
 
     let input = std::fs::read_to_string("inputs/y2015-day06.txt").expect("Failed to read input");
-    let result = solve_part1(&input);
+    let result = solve_part::<SimpleLight>(&input);
     println!(
         "Part 1 solution: {}, time taken {:.2?}",
         result,
@@ -46,7 +42,7 @@ fn main() {
 
     let now = Instant::now();
 
-    let result = solve_part2(&input);
+    let result = solve_part::<DimmableLight>(&input);
     println!(
         "Part 2 solution: {}, time taken {:.2?}",
         result,
