@@ -69,8 +69,16 @@ fn evaluate(
     value
 }
 
-fn solve_part2(input: &str) -> usize {
-    todo!()
+fn solve_part2(input: &str) -> u16 {
+    // Get the original "a" as was done solve_part1
+    let mut circuit = read_circuit(input);
+    let mut cache: HashMap<String, u16> = HashMap::new();
+    let a = evaluate("a", &circuit, &mut cache);
+
+    // Insert value from a to b, clear cache and redo
+    circuit.insert(String::from("b"), Instruction::Value(a));
+    cache.clear();
+    evaluate("a", &circuit, &mut cache)
 }
 
 fn main() {
