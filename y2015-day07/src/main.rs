@@ -1,5 +1,4 @@
 mod logicgates;
-// use logicgates::{AndGate, Gate, LogicGate, LshiftGate, NotGate, OrGate, RshiftGate, StaticInput};
 use std::collections::HashMap;
 
 use logicgates::Instruction;
