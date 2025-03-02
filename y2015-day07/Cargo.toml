@@ -1,8 +1,6 @@
 [package]
-name = "y2015-day06"
+name = "y2015-day07"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-regex = "1.11"
-rayon = "1.10"

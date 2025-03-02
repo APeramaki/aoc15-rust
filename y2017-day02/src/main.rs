@@ -37,7 +37,7 @@ fn lazy_combinations(iter: impl Iterator<Item = u32>) -> impl Iterator<Item = (u
 
     (0..len).flat_map(move |i| {
         let items = Rc::clone(&items);
-        (i + 1..len).map(move |j| (items[i].clone(), items[j].clone()))
+        (i + 1..len).map(move |j| (items[i], items[j]))
     })
 }
 
