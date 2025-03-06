@@ -49,7 +49,47 @@ fn solve_part1(input: &str) -> u32 {
 }
 
 fn solve_part2(input: &str) -> u32 {
-    todo!()
+    let re =
+        Regex::new(r#"^(?<roomname>[a-z]+(?:-[a-z]+)*)-(?<roomid>\d+)\[(?<checksum>[a-z]{5})\]$"#)
+            .unwrap();
+    let target_room = "northpole object storage";
+    input
+        .lines()
+        .find_map(|line| {
+            // Get capture groups
+            if let Some(caps) = re.captures(line) {
+                let roomid = caps
+                    .name("roomid")
+                    .unwrap()
+                    .as_str()
+                    .parse::<u16>()
+                    .unwrap();
+
+                let roomname = caps
+                    .name("roomname")
+                    .unwrap()
+                    .as_str()
+                    .chars()
+                    .map(|c| match c {
+                        '-' => ' ',
+                        c => {
+                            ((c as u16 + roomid - 'a' as u16) % 26 // Map character to number, a = 0
+                            + 'a' as u16) // back to number representing ascii character,
+                            as u8 as char // back to character
+                        } //
+                    })
+                    // match to target (northpole object storage) lazily
+                    .zip(target_room.chars())
+                    .all(|(a, b)| a == b);
+
+                if roomname {
+                    return Some(roomid);
+                }
+            }
+
+            None
+        })
+        .unwrap() as u32
 }
 
 fn main() {
