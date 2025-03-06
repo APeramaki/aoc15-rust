@@ -2,8 +2,7 @@ use super::*;
 
 #[test]
 fn part1() {
-    let example_input = r#"
-""
+    let example_input = r#"""
 "abc"
 "aaa\"aaa"
 "\x27"
