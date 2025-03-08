@@ -1,20 +1,13 @@
+use md5::Digest;
+
 fn solve_part1(input: &str) -> u64 {
-    let mut password = 0;
-    let mut count: u8 = 0;
-
-    for i in 0.. {
-        let digest = md5::compute(format!("{}{}", input, i));
-
-        if [0; 2] == digest[0..=1] && digest[2] < 16 {
-            password = password * 16 + (digest[2] as u64);
-            count += 1;
-            if count == 8 {
-                break;
-            }
-        }
-    }
-
-    password
+    (0..)
+        .map(|i: u64| (i, md5::compute(format!("{}{}", input, i))))
+        .filter(|(_, digest)| [0; 2] == digest[0..=1] && digest[2] < 16)
+        .take(8)
+        .fold(0u64, |password: u64, (_, digest): (u64, Digest)| {
+            password * 16 + (digest[2] as u64)
+        })
 }
 
 fn solve_part2(input: &str) -> u32 {
