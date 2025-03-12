@@ -1,5 +1,12 @@
+use itertools::Itertools;
+
 fn solve_part1(input: &str) -> u32 {
-    todo!()
+    input
+        .lines()
+        .map(|line| line.parse::<u32>().unwrap())
+        .tuple_windows()
+        .filter_map(|(a, b)| if a < b { Some(()) } else { None })
+        .count() as u32
 }
 
 fn solve_part2(input: &str) -> u32 {
