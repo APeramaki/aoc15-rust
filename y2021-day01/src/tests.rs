@@ -29,5 +29,5 @@ fn part2() {
 260
 263
 "#;
-    assert_eq!(solve_part1(example_input), 5);
+    assert_eq!(solve_part2(example_input), 5);
 }

@@ -10,7 +10,14 @@ fn solve_part1(input: &str) -> u32 {
 }
 
 fn solve_part2(input: &str) -> u32 {
-    todo!()
+    input
+        .lines()
+        .map(|line| line.parse::<u32>().unwrap())
+        .tuple_windows()
+        .map(|(a, b, c)| a + b + c)
+        .tuple_windows::<(_, _)>()
+        .filter(|(prev, current)| prev < current)
+        .count() as u32
 }
 
 fn main() {
