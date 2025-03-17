@@ -21,8 +21,51 @@ fn solve_part1(input: &str) -> String {
         .collect::<String>()
 }
 
-fn solve_part2(input: &str) -> u32 {
-    todo!()
+fn solve_part2(input: &str) -> String {
+    let mut locations: Vec<HashMap<char, u8>> = Vec::new();
+    let mut line_iter = input.lines();
+    let first_line = line_iter.next().unwrap();
+
+    for (i, c) in first_line.chars().enumerate() {
+        locations.push(HashMap::new());
+        locations[i].insert(c, 1);
+    }
+    line_iter.for_each(|line| {
+        line.chars().enumerate().for_each(|(i, c)| {
+            locations[i].entry(c).and_modify(|e| *e += 1).or_insert(1);
+        })
+    });
+
+    locations
+        .iter()
+        .map(|loc| loc.iter().min_by(|a, b| a.1.cmp(b.1)).unwrap().0)
+        .collect::<String>()
+}
+
+fn solve_joint(input: &str) -> (String, String) {
+    let mut locations: Vec<HashMap<char, u8>> = Vec::new();
+    let mut line_iter = input.lines();
+    let first_line = line_iter.next().unwrap();
+
+    for (i, c) in first_line.chars().enumerate() {
+        locations.push(HashMap::new());
+        locations[i].insert(c, 1);
+    }
+    line_iter.for_each(|line| {
+        line.chars().enumerate().for_each(|(i, c)| {
+            locations[i].entry(c).and_modify(|e| *e += 1).or_insert(1);
+        })
+    });
+
+    locations
+        .iter()
+        .map(|loc| {
+            (
+                loc.iter().max_by(|a, b| a.1.cmp(b.1)).unwrap().0,
+                loc.iter().min_by(|a, b| a.1.cmp(b.1)).unwrap().0,
+            )
+        })
+        .collect::<(String, String)>()
 }
 
 fn main() {
