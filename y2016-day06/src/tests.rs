@@ -18,7 +18,6 @@ vntsnd
 vrdear
 dvrsen
 enarar
-
 "#;
     assert_eq!(solve_part1(example_input), "easter");
 }
